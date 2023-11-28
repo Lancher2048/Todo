@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Todo.Core;
 
 namespace Todo.WebAPI.Controllers
@@ -10,10 +11,12 @@ namespace Todo.WebAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly DataContext _context;
+        private IDistributedCache _cache;
 
-        public UserController(DataContext context)
+        public UserController(DataContext context, IDistributedCache cache)
         {
             _context = context;
+            _cache = cache;
         }
         /// <summary>
         /// 获取列表
@@ -37,6 +40,19 @@ namespace Todo.WebAPI.Controllers
         {
             var entity = await _context.User.FindAsync(keyValue);
             return Ok(entity);
+        }
+
+        /// <summary>
+        /// 获取缓存key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetCacheKey")]
+        public async Task<ActionResult> GetCacheKey(string key)
+        {
+            var val = await _cache.GetStringAsync(key);
+            return Ok(val);
         }
         /// <summary>
         /// 删除
