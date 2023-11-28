@@ -17,7 +17,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("redisConnection");
-    options.InstanceName = "ToDo_";// keyֵǰ׺
+    options.InstanceName = "ToDo_";// redis前缀׺
 });
 
 var app = builder.Build();
