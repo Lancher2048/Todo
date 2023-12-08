@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
@@ -11,12 +12,14 @@ namespace Todo.WebAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly JwtHelper _jwtHelper;
         private IDistributedCache _cache;
 
-        public UserController(DataContext context, IDistributedCache cache)
+        public UserController(DataContext context, IDistributedCache cache, JwtHelper jwtHelper)
         {
             _context = context;
             _cache = cache;
+            _jwtHelper = jwtHelper;
         }
         /// <summary>
         /// 获取列表
@@ -24,6 +27,7 @@ namespace Todo.WebAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetList")]
+        [Authorize]
         public async Task<ActionResult> GetList()
         {
             var list = await _context.User.ToListAsync();
@@ -95,6 +99,13 @@ namespace Todo.WebAPI.Controllers
             _context.User.Add(entity);
             await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetToken")]
+        public async Task<ActionResult> GetToken()
+        {
+            return Ok(_jwtHelper.CreateToken());
         }
     }
 }
