@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Todo.WebAPI
+namespace Todo.WebAPI.App_Start
 {
     public class JwtHelper
     {

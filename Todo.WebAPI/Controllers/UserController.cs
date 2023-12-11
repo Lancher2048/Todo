@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Todo.Core;
+using Todo.WebAPI.App_Start;
 
 namespace Todo.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -26,11 +27,12 @@ namespace Todo.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetList")]
         [Authorize]
         public async Task<ActionResult> GetList()
         {
-            var list = await _context.User.ToListAsync();
+            var list = new List<UserEntity> { new UserEntity { Id = "2323", Password = "" } };
+
+            //var list = await _context.User.ToListAsync();
             return Ok(list);
         }
         /// <summary>
@@ -39,7 +41,6 @@ namespace Todo.WebAPI.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetEntity")]
         public async Task<ActionResult> GetEntity(string keyValue)
         {
             var entity = await _context.User.FindAsync(keyValue);
@@ -52,7 +53,6 @@ namespace Todo.WebAPI.Controllers
         /// <param name="key"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetCacheKey")]
         public async Task<ActionResult> GetCacheKey(string key)
         {
             var val = await _cache.GetStringAsync(key);
@@ -64,7 +64,6 @@ namespace Todo.WebAPI.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("DeleteEntity")]
         public async Task<ActionResult> DeleteEntity(string keyValue)
         {
             var list = await _context.User.Where(n => n.Id == keyValue).ToListAsync();
@@ -87,7 +86,6 @@ namespace Todo.WebAPI.Controllers
         /// <param name="remark"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("AddEntity")]
         public async Task<ActionResult> AddEntity(string name, string passWord, int? sex, string remark)
         {
             var entity = new UserEntity();
@@ -102,7 +100,6 @@ namespace Todo.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("GetToken")]
         public async Task<ActionResult> GetToken()
         {
             return Ok(_jwtHelper.CreateToken());
