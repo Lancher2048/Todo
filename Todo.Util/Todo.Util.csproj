@@ -15,4 +15,8 @@
     <None Include="Extensions\Extensions.Convert.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Snowflake.Core" Version="2.0.0" />
+  </ItemGroup>
+
 </Project>

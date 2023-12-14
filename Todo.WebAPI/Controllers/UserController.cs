@@ -90,7 +90,7 @@ namespace Todo.WebAPI.Controllers
         public async Task<ActionResult> AddEntity(string name, string passWord, int? sex, string remark)
         {
             var entity = new UserEntity();
-            entity.Id = Guid.NewGuid().ToString();
+            entity.Id = SnowflakeHelper.GetId().ToString();
             entity.UserName = name;
             entity.Password = passWord;
             entity.Remark = remark;

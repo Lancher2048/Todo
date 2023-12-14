@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -17,6 +18,13 @@ namespace Todo.Util
         public static object? ToJson(this string json)
         {
             return string.IsNullOrEmpty(json) ? null : JsonSerializer.Serialize(json);
+        }
+
+        public static object? ToJson(this object obj)
+        {
+            var option = new JsonSerializerOptions();
+            option.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            return JsonSerializer.Serialize(obj);
         }
     }
 }
