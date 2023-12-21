@@ -105,5 +105,11 @@ namespace Todo.WebAPI.Controllers
         {
             return Ok(_jwtHelper.CreateToken());
         }
+
+        [HttpGet]
+        public async Task<ActionResult<string>> GetSnowId()
+        {
+            return Ok(SnowflakeHelper.GetId());
+        }
     }
 }
