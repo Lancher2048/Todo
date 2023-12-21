@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Todo.Commons;
 using Todo.Core;
 using Todo.WebAPI.App_Start;
 
@@ -81,6 +82,12 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.FromSeconds(30), //过期时间容错值，解决服务器端时间不同步问题（秒）
         RequireExpirationTime = true,
     };
+});
+
+// 雪花ID配置
+SnowflakeHelper.SetIdWorker(new IdWorkOptions { 
+    workId = 1,
+    datacenterId = 1
 });
 
 

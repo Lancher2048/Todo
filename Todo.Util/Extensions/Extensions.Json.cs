@@ -6,7 +6,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Todo.Util
+namespace Todo.Commons
 {
     public static partial class Extensions
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Todo.Util
+namespace Todo.Commons
 {
     /// <summary>
     /// 字符串长度验证

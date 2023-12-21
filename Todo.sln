@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.WebAPI", "Todo.WebAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Core", "Todo.Core\Todo.Core.csproj", "{305DAD97-6BC8-47B5-BA60-BEE317335994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Util", "Todo.Util\Todo.Util.csproj", "{B0A399ED-ECB1-4053-8914-2844FD28B03B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Commons", "Todo.Util\Todo.Commons.csproj", "{B0A399ED-ECB1-4053-8914-2844FD28B03B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

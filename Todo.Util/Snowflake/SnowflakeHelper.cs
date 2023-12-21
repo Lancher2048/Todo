@@ -1,22 +1,26 @@
 ﻿using Snowflake.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Todo.Util
+namespace Todo.Commons
 {
     public static class SnowflakeHelper
     {
+        private static IdWorker _IdWorker = null;
+
+        public static void SetIdWorker(IdWorkOptions options)
+        {
+            _IdWorker = new IdWorker(options.workId, options.datacenterId);
+        }
         /// <summary>
         /// 获取雪花ID
         /// </summary>
         /// <returns></returns>
         public static long GetId()
         {
-            var worker = new IdWorker(1, 1);
-            return worker.NextId();
+            if(_IdWorker == null)
+            {
+                _IdWorker = new IdWorker(0, 0);
+            }
+            return _IdWorker.NextId();
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Todo.Core;
-using Todo.Util;
+using Todo.Commons;
 using Todo.WebAPI.App_Start;
 
 namespace Todo.WebAPI.Controllers
@@ -90,7 +90,7 @@ namespace Todo.WebAPI.Controllers
         public async Task<ActionResult> AddEntity(string name, string passWord, int? sex, string remark)
         {
             var entity = new UserEntity();
-            entity.Id = SnowflakeHelper.GetId().ToString();
+            entity.Id = Guid.NewGuid().ToString();
             entity.UserName = name;
             entity.Password = passWord;
             entity.Remark = remark;
