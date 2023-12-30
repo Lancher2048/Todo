@@ -14,7 +14,8 @@ namespace Todo.Commons
             if (reader.TokenType == JsonTokenType.Number)
                 return reader.GetDecimal();
 
-            return reader.GetString().Equals("") ? "0.00".ToDecimal() : reader.GetString().ToDecimal();
+            //return reader.GetString().Equals("") ? "0.00".ToDecimal() : reader.GetString().ToDecimal();
+            return 0;
         }
 
         public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)

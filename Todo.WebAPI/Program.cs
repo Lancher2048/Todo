@@ -7,12 +7,30 @@ using System.Text;
 using Todo.Commons;
 using Todo.Core;
 using Todo.WebAPI.App_Start;
+using Todo.Commons.Log;
+using log4net;
+using log4net.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host
+.ConfigureLogging((hostingContext, builder) =>
+{
+    builder.AddFilter("System", LogLevel.Error);
+    builder.AddFilter("Microsoft", LogLevel.Error);
+    builder.SetMinimumLevel(LogLevel.Error);
+    builder.AddLog4Net(Path.Combine(Directory.GetCurrentDirectory(), "log4net.config"));
+});
+
+ILoggerRepository loggerRepository = LogManager.CreateRepository("NETCoreRepository");
+Log4NetHelper.SetConfig(loggerRepository, "log4net.config");
+
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(n =>
+{
+    n.Filters.Add(typeof(GlobalExceptionsFilter));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
