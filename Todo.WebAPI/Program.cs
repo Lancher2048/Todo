@@ -10,6 +10,10 @@ using Todo.WebAPI.App_Start;
 using Todo.Commons.Log;
 using log4net;
 using log4net.Repository;
+using System.Text.Json;
+using Todo.Commons.Converter;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +34,22 @@ Log4NetHelper.SetConfig(loggerRepository, "log4net.config");
 builder.Services.AddControllers(n =>
 {
     n.Filters.Add(typeof(GlobalExceptionsFilter));
+})
+.AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.WriteIndented = true;
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+    options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new DateTimeNullableConverter());
+
+    options.JsonSerializerOptions.Converters.Add(new BooleanJsonConverter());
+
+    options.JsonSerializerOptions.Converters.Add(new DecimalJsonConverter());
+
+    options.JsonSerializerOptions.Converters.Add(new IntJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new LongJsonConverter());
+    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

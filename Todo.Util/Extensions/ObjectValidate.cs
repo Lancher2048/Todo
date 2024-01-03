@@ -5,12 +5,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Todo.Commons
+namespace Todo.Commons.Extensions
 {
     /// <summary>
     /// 验证扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class ObjectValidate
     {
         public static bool Verify(this object obj, out string message)
         {

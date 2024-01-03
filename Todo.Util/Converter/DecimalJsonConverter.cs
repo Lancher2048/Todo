@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
+using Todo.Commons.Extensions;
 
-namespace Todo.Commons
+namespace Todo.Commons.Converter
 {
     public class DecimalJsonConverter : JsonConverter<decimal>
     {
@@ -14,8 +10,7 @@ namespace Todo.Commons
             if (reader.TokenType == JsonTokenType.Number)
                 return reader.GetDecimal();
 
-            //return reader.GetString().Equals("") ? "0.00".ToDecimal() : reader.GetString().ToDecimal();
-            return 0;
+            return reader.GetString().Equals("") ? "0.00".ToDecimal() : reader.GetString().ToDecimal();
         }
 
         public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)

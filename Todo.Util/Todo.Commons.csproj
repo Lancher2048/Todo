@@ -9,10 +9,7 @@
   <ItemGroup>
     <Compile Remove="Attribute\AttributeTools.cs" />
     <Compile Remove="Extensions\Extensions.Convert.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Extensions\Extensions.Convert.cs" />
+    <Compile Remove="Extensions\Extensions.DateTime.cs" />
   </ItemGroup>
 
   <ItemGroup>

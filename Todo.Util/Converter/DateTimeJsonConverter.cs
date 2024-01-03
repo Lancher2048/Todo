@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Todo.Commons
+namespace Todo.Commons.Converter
 {
     public class DateTimeJsonConverter : JsonConverter<DateTime>
     {

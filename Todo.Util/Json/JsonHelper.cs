@@ -7,10 +7,11 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Todo.Commons.Converter;
 
-namespace Todo.Commons
+namespace Todo.Commons.Json
 {
-    public static partial class Extensions
+    public static class JsonHelper
     {
         /// <summary>
         /// 转成json对象
@@ -29,7 +30,9 @@ namespace Todo.Commons
             options.Converters.Add(new DateTimeNullableConverter());
 
             options.Converters.Add(new BooleanJsonConverter());
-            options.PropertyNameCaseInsensitive = true;
+            options.Converters.Add(new IntJsonConverter());
+            options.Converters.Add(new LongJsonConverter());
+            options.PropertyNameCaseInsensitive = true;//忽略大小写
 
             return JsonSerializer.Serialize(obj, options);
         }
@@ -46,13 +49,16 @@ namespace Todo.Commons
             options.WriteIndented = true;
             options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             options.AllowTrailingCommas = true;
-            //设置时间格式
+
             options.Converters.Add(new DateTimeJsonConverter());
             options.Converters.Add(new DateTimeNullableConverter());
-            //设置bool获取格式
+
             options.Converters.Add(new BooleanJsonConverter());
-            options.PropertyNameCaseInsensitive = true;                     //忽略大小写
-            return string.IsNullOrEmpty(json) ? default(T) : JsonSerializer.Deserialize<T>(json, options);
+            options.Converters.Add(new IntJsonConverter());
+            options.Converters.Add(new LongJsonConverter());
+            options.PropertyNameCaseInsensitive = true;//忽略大小写
+
+            return json == null ? default(T) : JsonSerializer.Deserialize<T>(json, options);
         }
         /// <summary>
         /// JSON字符串序列化成集合
@@ -67,12 +73,14 @@ namespace Todo.Commons
             options.WriteIndented = true;
             options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             options.AllowTrailingCommas = true;
-            //设置时间格式
+
             options.Converters.Add(new DateTimeJsonConverter());
             options.Converters.Add(new DateTimeNullableConverter());
-            //设置bool获取格式
+
             options.Converters.Add(new BooleanJsonConverter());
-            options.PropertyNameCaseInsensitive = true;                     //忽略大小写
+            options.Converters.Add(new IntJsonConverter());
+            options.Converters.Add(new LongJsonConverter());
+            options.PropertyNameCaseInsensitive = true;//忽略大小写
             return json == null ? null : JsonSerializer.Deserialize<List<T>>(json, options);
         }
         /// <summary>
