@@ -15,12 +15,10 @@ namespace Todo.WebAPI.Controllers
     {
         private readonly DataContext _context;
         private readonly JwtHelper _jwtHelper;
-        private IDistributedCache _cache;
 
-        public UserController(DataContext context, IDistributedCache cache, JwtHelper jwtHelper)
+        public UserController(DataContext context, JwtHelper jwtHelper)
         {
             _context = context;
-            _cache = cache;
             _jwtHelper = jwtHelper;
         }
         /// <summary>
@@ -48,17 +46,6 @@ namespace Todo.WebAPI.Controllers
             return Ok(entity);
         }
 
-        /// <summary>
-        /// 获取缓存key
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult> GetCacheKey(string key)
-        {
-            var val = await _cache.GetStringAsync(key);
-            return Ok(val);
-        }
         /// <summary>
         /// 删除
         /// </summary>
