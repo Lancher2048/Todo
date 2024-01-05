@@ -1,5 +1,8 @@
-﻿namespace Todo.Core
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Todo.Core
 {
+    [Table("User")]
     public class UserEntity
     {
         /// <summary>
