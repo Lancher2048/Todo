@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Core", "Todo.Core\Todo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Commons", "Todo.Util\Todo.Commons.csproj", "{B0A399ED-ECB1-4053-8914-2844FD28B03B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Services", "Todo.Services\Todo.Services.csproj", "{7CE5D69A-A56B-4CC4-9CA6-B42E9B8522A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Services", "Todo.Services\Todo.Services.csproj", "{7CE5D69A-A56B-4CC4-9CA6-B42E9B8522A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.RabbitProvider", "Todo.rabbitProvider\Todo.RabbitProvider.csproj", "{7019B3E7-26AA-4B39-BAC8-A0E57F8D91D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.RabbitCustomer", "Todo.RabbitCustomer\Todo.RabbitCustomer.csproj", "{F5887817-AF80-4D57-8BDE-E2698DEC73B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{7CE5D69A-A56B-4CC4-9CA6-B42E9B8522A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CE5D69A-A56B-4CC4-9CA6-B42E9B8522A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CE5D69A-A56B-4CC4-9CA6-B42E9B8522A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7019B3E7-26AA-4B39-BAC8-A0E57F8D91D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7019B3E7-26AA-4B39-BAC8-A0E57F8D91D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7019B3E7-26AA-4B39-BAC8-A0E57F8D91D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7019B3E7-26AA-4B39-BAC8-A0E57F8D91D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5887817-AF80-4D57-8BDE-E2698DEC73B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5887817-AF80-4D57-8BDE-E2698DEC73B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5887817-AF80-4D57-8BDE-E2698DEC73B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5887817-AF80-4D57-8BDE-E2698DEC73B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
